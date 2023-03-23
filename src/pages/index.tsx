@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 const AceEditor = dynamic(() => import("@/components/AceEditor"), {
@@ -34,11 +33,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <AceEditor setValue={setValue} />
-        <button onClick={() => postJsonData()}>Convert</button>
+      <main
+        style={{ display: "grid", placeItems: "center", minHeight: "100vvh" }}
+      >
+        <h1>JSON TO TypeScript Type</h1>
+        <div style={{ marginTop: 40 }}>
+          <AceEditor setValue={setValue} />
+        </div>
+        <button style={{ marginTop: 10 }} onClick={() => postJsonData()}>
+          Convert
+        </button>
 
-        <div>
+        <div style={{ marginTop: 20 }}>
           <SyntaxHighlighter code={tsValue} />
         </div>
       </main>
