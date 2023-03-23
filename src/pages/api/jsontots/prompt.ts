@@ -1,22 +1,28 @@
 function jsonToTsPrompt(jsonData: string): string {
   return `
-  I want you to convert JSON into TypeScript typing. For example:
-  
+  I want you to convert JSON into TypeScript typing. And if the JSON is nested, please make a separate type. For example: 
+
   {
-    "userId": "1",
-    "age": 20,
-    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit "
+    "id": 1,
+    "name": "Leanne",
+    "address": {
+        "street": "Kulas",
+        "suite": "Apt"
+    }
   }
 
   type User = {
-    userId: string;
-    age: number;
-    title: string;
-    body: string;
+    id: number;
+    name: string;
+    address: Address;
   }
 
-  Please convert this: 
+  type Address = {
+    street: string;
+    suite: string; 
+  }
+
+  Please convert this JSON data:
   ${jsonData}
   `;
 }
