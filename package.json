@@ -1,5 +1,5 @@
 {
-  "name": "json-to-typescript",
+  "name": "snake-case-to-camel-case-data-conv",
   "version": "0.1.0",
   "private": true,
   "scripts": {
