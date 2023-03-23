@@ -12,19 +12,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const jsonData: string = req.body.jsonData || "";
-  try {
-    JSON.parse(jsonData);
-  } catch (error) {
-    res.status(400).json({
-      error: "Please enter a valid JSON",
-    });
-  }
 
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: jsonToTsPrompt(jsonData),
       temperature: 0.2,
+      max_tokens: 2048,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
