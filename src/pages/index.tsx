@@ -1,30 +1,6 @@
 import Head from "next/head";
-import dynamic from "next/dynamic";
-import { useState } from "react";
-const AceEditor = dynamic(() => import("@/components/AceEditor"), {
-  ssr: false,
-});
-const SyntaxHighlighter = dynamic(
-  () => import("@/components/SyntaxHighlighter"),
-  {
-    ssr: false,
-  }
-);
-
+import Link from "next/link";
 export default function Home() {
-  const [value, setValue] = useState<string>("");
-  const [tsValue, setTsValue] = useState<string>("");
-  const postJsonData = async () => {
-    const response = await fetch("/api/jsontots", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ jsonData: value }),
-    });
-    const data = await response.json();
-    setTsValue(data.result);
-  };
   return (
     <>
       <Head>
@@ -33,21 +9,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main
-        style={{ display: "grid", placeItems: "center", minHeight: "100vvh" }}
+      <div
+        style={{
+          display: "grid",
+          placeItems: "center",
+          minHeight: "100vvh",
+          gap: 10,
+        }}
       >
-        <h1>JSON TO TypeScript Type</h1>
-        <div style={{ marginTop: 40 }}>
-          <AceEditor setValue={setValue} />
-        </div>
-        <button style={{ marginTop: 10 }} onClick={() => postJsonData()}>
-          Convert
-        </button>
+        <Link href="/jsontots">JSON To TypeScript Type</Link>
 
-        <div style={{ marginTop: 20 }}>
-          <SyntaxHighlighter code={tsValue} />
-        </div>
-      </main>
+        <Link href="/attributemapper">Attribute Mapper</Link>
+      </div>
     </>
   );
 }

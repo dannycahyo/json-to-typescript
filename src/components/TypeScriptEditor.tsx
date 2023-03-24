@@ -1,5 +1,5 @@
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/mode-typescript";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import type React from "react";
@@ -9,13 +9,16 @@ type TextEditorProps = {
   readonly?: boolean;
 };
 
-const TextEditor: React.FC<TextEditorProps> = ({ setValue, readonly }) => {
+const TypeScriptEditor: React.FC<TextEditorProps> = ({
+  setValue,
+  readonly,
+}) => {
   return (
     <>
       <AceEditor
-        placeholder="Please type or copy paste the JSON data you would like to convert to TS type"
+        placeholder="Please type or copy paste the TypeScript Type"
         theme="monokai"
-        mode="json"
+        mode="typescript"
         fontSize={14}
         showPrintMargin
         showGutter
@@ -28,4 +31,4 @@ const TextEditor: React.FC<TextEditorProps> = ({ setValue, readonly }) => {
   );
 };
 
-export default TextEditor;
+export default TypeScriptEditor;
